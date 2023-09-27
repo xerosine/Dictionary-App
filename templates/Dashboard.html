@@ -7,5 +7,59 @@
 {% block dash_active %}active bg-dark{% endblock %}
 
 {% block content %}
-    <h1>This is the Dashboard page</h1>
+    <div class="row pe-md-5 ps-md-3 p-2">
+        <h2 class="fw-bold text-center mt-4 mb-0 my-md-3">Word Index</h2>
+        <div class="col-md-2 sidenav justify-content-evenly mt-4 mt-md-2 flex-wrap">
+            <a href="#" id="word-index" class="w-50 side-active text-center">All Words</a>
+            <a href="#" id="word-add" class="w-50 text-center">Add New</a>
+            <div>
+                <form action="javascript:void(0)" id="word-add-form">
+                    <div class="form-group row p-4 p-md-0">
+                        <div class="col-6 col-md-12">
+                            <label for="word" class="form-label fs-5 fw-semibold">Word:</label>
+                            <input type="text" class="form-control" name="word" value="{{ user_input }}" 
+                            id="word" placeholder="Type in the word here:">
+                        </div>
+                        <div class="col-6 col-md-12">
+                            <label for="word"class="form-label fs-5 fw-semibold">Meaning:</label>
+                            <textarea type="text" class="form-control" name="word"
+                            id="meaning" placeholder="Meaning of the word"></textarea>
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <button type="submit" id="add-submit" class="btn btn-primary w-50 mt-2">Submit</button>
+                            <button type="button" id="add-cancel" class="btn btn-danger w-50 mt-2">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-10 main">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Word</th>
+                        <th>Meaning</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry['word'] }}</td>
+                        <td>{{ entry['meaning'] }}</td>
+                        <td><button class="btn btn-primary btn-block edit" id="{{ entry['id'] }}">Edit</button></td>
+                        <td><button class="btn btn-danger btn-block delete"  id="{{ entry['id'] }}">Delete</button></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3">This dictionary has no words at the moment</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

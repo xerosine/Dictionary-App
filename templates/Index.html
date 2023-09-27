@@ -7,7 +7,7 @@
 {% block home_active %}active bg-dark{% endblock %}
 
 {% block content %}
-<div class="row h-100">
+<div class="row">
     <div class="col-md-6 contain mt-md-2">
         <div class="mt-md-5 ms-ext pt-md-4 mx-5 me-md-0">
             <h1 class="mb-4 mt-5 fw-bold">The Dictionary App</h1>
@@ -18,8 +18,8 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="word" class="form-label fs-5 fw-semibold">Word:</label>
-                                    <input type="text" class="form-control" name="word" 
-                                    id="word" placeholder="Type in the word here:">
+                                    <input type="text" class="form-control" name="word" value="{{ user_input }}" 
+                                    placeholder="Type in the word here:">
                                 </div>
                                 <div class="col">
                                     <button type="submit" class="btn btn-primary w-100">Submit</button>
@@ -32,15 +32,15 @@
                     <form action="">
                         <div class="form-group">
                             <label for="word"class="form-label fs-5 fw-semibold">Meaning:</label>
-                            <textarea type="text" class="form-control" name="word" 
-                            id="word" placeholder="Meaning of the word" disabled>{{ user_input }}</textarea>
+                            <textarea type="text" class="form-control" name="word"
+                            placeholder="Meaning of the word" disabled>{{ user_response }}</textarea>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 mt-md-2 pb-md-4 h-100 contain">
+    <div class="col-md-6 mt-md-2 pb-md-4 px-md-0 ms-md-0 h-100 contain">
         <div class="mt-md-5 pt-md-4 text-center h-100">
             <img class="landingimg" src="{{ url_for('static', filename='images/webdict.png') }}" alt="">
         </div>

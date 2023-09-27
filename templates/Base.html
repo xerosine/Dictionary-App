@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='/scripts.js') }}"></script>
     {% block title %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar py-0 ps-3 base-color" data-bs-theme="dark">
-        <div class="container-fluid justify-content-evenly">
-            <a class="navbar-brand text-muted fs-3" href="#">Ustacky</a>
-            <div class="navbar-nav float-end flex-row pt-1 fs-5 w-75">
+    <nav class="navbar py-0 ps-0 base-color" data-bs-theme="dark">
+        <div class="container-fluid justify-content-evenly ps-0">
+            <a class="navbar-brand py-0 text-muted fs-3" href="#">Ustacky</a>
+            <div class="navbar-nav float-end flex-row fs-5 w-75">
               <a class="nav-link px-3 me-auto {% block home_active %}{% endblock %}" 
               href="{{ url_for('index') }}">Home</a>
               <a class="nav-link px-3 {% block dash_active %}{% endblock %}" 
@@ -20,7 +22,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid h-100">
+    <div class="container-fluid container-height">
         {% block content %}{% endblock %}
     </div>
     <footer class="footer base-color">
