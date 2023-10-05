@@ -18,16 +18,37 @@
                         <div class="col-6 col-md-12">
                             <label for="word" class="form-label fs-5 fw-semibold">Word:</label>
                             <input type="text" class="form-control" name="word" value="{{ user_input }}" 
-                            id="word" placeholder="Type in the word here:">
+                            id="word" placeholder="Type in the word here:" required>
                         </div>
                         <div class="col-6 col-md-12">
                             <label for="word"class="form-label fs-5 fw-semibold">Meaning:</label>
                             <textarea type="text" class="form-control" name="word"
-                            id="meaning" placeholder="Meaning of the word"></textarea>
+                            id="meaning" placeholder="Meaning of the word" required></textarea>
                         </div>
                         <div class="d-flex flex-column align-items-center">
-                            <button type="submit" id="add-submit" class="btn btn-primary w-50 mt-2">Submit</button>
-                            <button type="button" id="add-cancel" class="btn btn-danger w-50 mt-2">Cancel</button>
+                            <button type="submit" id="add-submit" 
+                            class="btn btn-primary w-50 mt-2">Submit</button>
+                            <button type="button" id="add-cancel" 
+                            class="btn btn-danger w-50 mt-2">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <a href="#" id="logo-add" class="w-50 text-center">Add Logo</a>
+            <div>
+                <form action="javascript:void(0)" id="logo-add-form" 
+                method="POST" enctype="multipart/form-data">
+                    <div class="form-group row p-4 p-md-0">
+                        <div class="col-6 col-md-12">
+                            <label for="logo" class="form-label fs-5 fw-semibold">Upload:</label>
+                            <input type="file" class="form-control" name="logo" 
+                            id="logo" accept="image/*" required>
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <button type="submit" id="logo-submit" 
+                            class="btn btn-primary w-50 mt-2">Submit</button>
+                            <button type="reset" id="logo-cancel" 
+                            class="btn btn-danger w-50 mt-2">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -48,10 +69,31 @@
                     {% for entry in entries %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        <td>{{ entry['word'] }}</td>
-                        <td>{{ entry['meaning'] }}</td>
-                        <td><button class="btn btn-primary btn-block edit" id="{{ entry['id'] }}">Edit</button></td>
-                        <td><button class="btn btn-danger btn-block delete"  id="{{ entry['id'] }}">Delete</button></td>
+                        <td class="dict-word">{{ entry['word'] }}</td>
+                        <td class="dict-meaning">{{ entry['meaning'] }}</td>
+                        <form class="update-form" action="javascript:void(0)">
+                            <td class="edit-word">
+                                <input type="text" value="{{ entry['word'] }}" required>
+                            </td>
+                            <td class="edit-meaning">
+                                <textarea required>{{ entry['meaning'] }}</textarea>
+                            </td>
+                            <td class="td-submit">
+                                <button class="btn btn-success btn-block submit"
+                                id="{{ entry['id'] }}">Submit</button>
+                            </td>
+                        </form>
+                        <td>
+                            <button class="btn btn-primary btn-block edit">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-block delete"  
+                            id="{{ entry['id'] }}">Delete</button>
+                        </td>
+                        <td class="td-cancel">
+                            <button class="btn btn-danger btn-block cancel"  
+                            id="">Cancel</button>
+                        </td>
                     </tr>
                     {% else %}
                     <tr>

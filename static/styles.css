@@ -21,6 +21,22 @@ body {
 .base-color {
     background-color: #34325E;
 }
+.flash-success {
+    color: rgb(7, 168, 7);
+}
+.flash-error {
+    color: red;
+}
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.navbar-brand img {
+    height: 46px;
+}
+.active {
+    color: #34325E !important;
+}
 .footer {
     position: absolute;
     bottom: 0;
@@ -32,15 +48,6 @@ body {
 .ms-ext {
     margin-left: 15%;
 }
-.navbar-brand {
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-.active {
-    color: #34325E !important;
-}
-/* .container-height {
-} */
 h1 ~ .row {
     background-color: #d2e2f0;
 }
@@ -87,6 +94,13 @@ textarea.form-control {
     height: 60vh;
     overflow-y: scroll;
     padding-left: 50px;
+}
+.edit-word, .edit-meaning, .td-submit, .td-cancel {
+    display: none;
+}
+td textarea {
+    height: 80px;
+    resize: none;
 }
 
 

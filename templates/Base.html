@@ -11,9 +11,33 @@
     {% block title %}{% endblock %}
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="modal fade" id="modal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close custom-color" 
+              data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn custom-color" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
     <nav class="navbar py-0 ps-0 base-color" data-bs-theme="dark">
         <div class="container-fluid justify-content-evenly ps-0">
-            <a class="navbar-brand py-0 text-muted fs-3" href="#">Ustacky</a>
+            <a class="navbar-brand py-0 text-muted fs-3" href="#">
+              <img src="{{ url_for('static', filename='/images/logo.png') }}">
+            </a>
             <div class="navbar-nav float-end flex-row fs-5 w-75">
               <a class="nav-link px-3 me-auto {% block home_active %}{% endblock %}" 
               href="{{ url_for('index') }}">Home</a>
