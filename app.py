@@ -4,7 +4,6 @@ from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 
-app.secret_key = 'secret'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_DB'] = 'dictionary'
 app.config['MYSQL_DATABASE_USER'] = 'root'
