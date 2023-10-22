@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, flash, current_app
-import datetime, json, pymysql, os
+import json, pymysql, os
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
