@@ -34,7 +34,7 @@ def index():
     else:
         pass
         
-    return render_template("index.html", user_response = user_response, user_input = user_input)
+    return render_template("Index.html", user_response = user_response, user_input = user_input)
 
 @app.route('/dashboard')
 def dashboard():
