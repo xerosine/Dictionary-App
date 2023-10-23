@@ -4,6 +4,7 @@ from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 
+app.secret_key = 'secret'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_DB'] = 'dictionary'
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -30,6 +31,8 @@ def index():
                 user_response = result[0]['meaning']
             else:
                 user_response = 'This word does not exist in this dictionary, try another word'
+    else:
+        pass
         
     return render_template("index.html", user_response = user_response, user_input = user_input)
 
