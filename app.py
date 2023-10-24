@@ -23,7 +23,7 @@ def index():
         else:
             conn = mysql.get_db()
             cursor = conn.cursor()
-            cursor.execute('select meaning from dictionary.word where word=%s', (user_input))
+            cursor.execute('select meaning from sql11656172.word where word=%s', (user_input))
             result = cursor.fetchall()
             conn.commit()
             cursor.close()
@@ -40,7 +40,7 @@ def index():
 def dashboard():
     conn = mysql.get_db()
     cursor = conn.cursor()
-    cursor.execute('select * from dictionary.word')
+    cursor.execute('select * from sql11656172.word')
     result = cursor.fetchall()
     conn.commit()
     cursor.close()
@@ -57,7 +57,7 @@ def add_word():
     else:
         conn = mysql.get_db()
         cursor = conn.cursor()
-        cursor.execute('insert into word(word, meaning) values(%s, %s)', (word, meaning))
+        cursor.execute('insert into sql11656172.word(word, meaning) values(%s, %s)', (word, meaning))
         conn.commit()
         cursor.close()
         flash('Word succesfully added!', 'flash-success')
@@ -82,7 +82,7 @@ def delete_word(id):
     word_id = id
     conn = mysql.get_db()
     cursor = conn.cursor()
-    cursor.execute('delete from word where id=%s', (word_id))
+    cursor.execute('delete from sql11656172.word where id=%s', (word_id))
     conn.commit()
     cursor.close()
     flash('Word succesffuly deleted!', 'flash-success')
@@ -100,7 +100,7 @@ def edit_word(id):
     else:
         conn = mysql.get_db()
         cursor = conn.cursor()
-        cursor.execute('update word set word=%s, meaning=%s where id=%s', (word, meaning, word_id))
+        cursor.execute('update sql11656172.word set word=%s, meaning=%s where id=%s', (word, meaning, word_id))
         conn.commit()
         cursor.close()
         flash('Word succesffuly updated!', 'flash-success')
