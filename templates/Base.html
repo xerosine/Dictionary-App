@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/bootstrap/css/bootstrap.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
     <script src="{{ url_for('static', filename='/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ url_for('static', filename='/scripts.js') }}"></script>
     {% block title %}{% endblock %}
-</head>
-<body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="modal fade" id="modal" tabindex="-1"  aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close custom-color" 
-              data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
-                {% endfor %}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn custom-color" data-bs-dismiss="modal">Close</button>
-            </div>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close custom-color"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn custom-color"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
+      </div>
     </div>
-    {% endif %}
-    {% endwith %}
-    <nav class="navbar py-0 ps-0 base-color" data-bs-theme="dark">
-        <div class="container-fluid justify-content-evenly ps-0">
-            <a class="navbar-brand py-0 text-muted fs-3" href="#">
-              <img src="{{ url_for('static', filename='/images/logo.png') }}">
-            </a>
-            <div class="navbar-nav float-end flex-row fs-5 w-75">
-              <a class="nav-link px-3 me-auto {% block home_active %}{% endblock %}" 
-              href="{{ url_for('index') }}">Home</a>
-              <a class="nav-link px-3 {% block dash_active %}{% endblock %}" 
-              href="{{ url_for('dashboard') }}">Dashboard</a>
-            </div>
+    {% endif %} {% endwith %}
+    <nav
+      class="navbar navbar-expand-sm py-0 ps-0 base-color"
+      data-bs-theme="dark"
+    >
+      <div
+        class="container-fluid d-flex justify-content-between justify-content-sm-evenly px-0"
+      >
+        <a class="navbar-brand py-0 ms-3 my-1 col-4 col-sm-2" href="#">
+          <img src="{{ url_for('static', filename='/images/logo.png') }}" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navCollapse" class="navbar navbar-collapse pt-2 pb-0">
+          <div class="navbar-nav flex-sm-row fs-5">
+            <a
+              class="nav-link px-3 me-auto {% block home_active %}{% endblock %}"
+              href="{{ url_for('index') }}"
+              >Home</a
+            >
+            <a
+              class="nav-link px-3 {% block dash_active %}{% endblock %}"
+              href="{{ url_for('dashboard') }}"
+              >Dashboard</a
+            >
+          </div>
         </div>
+      </div>
     </nav>
-    <div class="container-fluid container-height">
-        {% block content %}{% endblock %}
-    </div>
+    <main class="container-fluid">{% block content %}{% endblock %}</main>
     <footer class="footer base-color">
-        <div class="container text-end text-light">
-          <p class="mb-0 mt-2">&copy;2021 - Ustacky. All Rights Reserved</p>
-          <small class="fst-italic">~xerosine</small>
-        </div>
+      <div class="container text-end text-light">
+        <p class="mb-0 mt-2">&copy;2021 - Ustacky. All Rights Reserved</p>
+        <small class="fst-italic">~xerosine</small>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

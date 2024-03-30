@@ -1,14 +1,24 @@
 from flask import Flask, render_template, url_for, request, flash, current_app
 import json, pymysql, os
+from config import *
 from flaskext.mysql import MySQL
 
-app = Flask(__name__)
+timeout = 10
+conn = pymysql.connect(
+  charset=charset,
+  connect_timeout=connect_timeout,
+  cursorclass=pymysql.cursors.DictCursor,
+  db=db,
+  host=host,
+  password=password,
+  read_timeout=read_timeout,
+  port=int(port),
+  user=user,
+  write_timeout=write_timeout,
+)
 
-app.secret_key = 'secret'
-app.config['MYSQL_DATABASE_HOST'] = 'sql11.freemysqlhosting.net'
-app.config['MYSQL_DATABASE_DB'] = 'sql11656172'
-app.config['MYSQL_DATABASE_USER'] = 'sql11656172'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'tsG8aCb44p'
+app = Flask(__name__)
+app.config['SECRET_KEY'] = secret
 
 mysql = MySQL(app, cursorclass = pymysql.cursors.DictCursor)
 
@@ -21,9 +31,8 @@ def index():
         if user_input == '':
             flash('Please input a word!', 'flash-error')
         else:
-            conn = mysql.get_db()
             cursor = conn.cursor()
-            cursor.execute('select meaning from sql11656172.word where word=%s', (user_input))
+            cursor.execute('select meaning from dictionary where word=%s', (user_input))
             result = cursor.fetchall()
             conn.commit()
             cursor.close()
@@ -38,9 +47,8 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-    conn = mysql.get_db()
     cursor = conn.cursor()
-    cursor.execute('select * from sql11656172.word')
+    cursor.execute('select * from dictionary')
     result = cursor.fetchall()
     conn.commit()
     cursor.close()
@@ -55,9 +63,8 @@ def add_word():
     if word == '' or meaning == '':
         flash('Please fill out all fields!', 'flash-error')
     else:
-        conn = mysql.get_db()
         cursor = conn.cursor()
-        cursor.execute('insert into sql11656172.word(word, meaning) values(%s, %s)', (word, meaning))
+        cursor.execute('insert into dictionary(word, meaning) values(%s, %s)', (word, meaning))
         conn.commit()
         cursor.close()
         flash('Word succesfully added!', 'flash-success')
@@ -80,9 +87,8 @@ def add_logo():
 @app.route('/word/<id>/delete', methods=['POST'])
 def delete_word(id):
     word_id = id
-    conn = mysql.get_db()
     cursor = conn.cursor()
-    cursor.execute('delete from sql11656172.word where id=%s', (word_id))
+    cursor.execute('delete from dictionary where id=%s', (word_id))
     conn.commit()
     cursor.close()
     flash('Word succesffuly deleted!', 'flash-success')
@@ -98,9 +104,8 @@ def edit_word(id):
     if word == '' or meaning == '':
         flash('Please fill out all fields!', 'flash-error')
     else:
-        conn = mysql.get_db()
         cursor = conn.cursor()
-        cursor.execute('update sql11656172.word set word=%s, meaning=%s where id=%s', (word, meaning, word_id))
+        cursor.execute('update dictionary set word=%s, meaning=%s where id=%s', (word, meaning, word_id))
         conn.commit()
         cursor.close()
         flash('Word succesffuly updated!', 'flash-success')

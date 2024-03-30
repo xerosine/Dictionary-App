@@ -1,50 +1,69 @@
-{% extends 'Base.html' %}
-
-{% block title %}
-    <title>Dictionary App</title>
-{% endblock %}
-
-{% block home_active %}active bg-dark{% endblock %}
-
-{% block content %}
-<div class="row">
-    <div class="col-md-6 contain mt-md-2">
-        <div class="mt-md-5 ms-ext pt-md-4 mx-5 me-md-0">
-            <h1 class="mb-4 mt-5 fw-bold">The Dictionary App</h1>
-            <div class="row p-3 rounded-3 w-100 ms-0">
-                <div class="col-sm-6">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label for="word" class="form-label fs-5 fw-semibold">Word:</label>
-                                    <input type="text" class="form-control" 
-                                    name="word" value="{{ user_input }}" 
-                                    placeholder="Type in the word here:" required>
-                                </div>
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+{% extends 'Base.html' %} {% block title %}
+<title>Dictionary App</title>
+{% endblock %} {% block home_active %}active bg-dark{% endblock %} {% block
+content %}
+<div class="row justify-content-around">
+  <div class="col-md-6 contain mt-md-2">
+    <div class="mt-5 ms-ext pt-md-4 mx-2 mx-sm-3 ps-sm-2 me-md-0">
+      <h1 class="mb-4 mt-md-3 fw-bold">The Dictionary App</h1>
+      <div class="row p-3 rounded-3 w-100 ms-0">
+        <div class="col-sm-6">
+          <form action="#" method="POST">
+            <div class="form-group">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="word" class="form-label fs-5 fw-semibold"
+                    >Word:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="word"
+                    value="{{ user_input }}"
+                    placeholder="Type in the word here"
+                    required
+                  />
                 </div>
-                <div class="col-sm-6">
-                    <form action="">
-                        <div class="form-group">
-                            <label for="word"class="form-label fs-5 fw-semibold">Meaning:</label>
-                            <textarea type="text" class="form-control" name="word"
-                            placeholder="Meaning of the word" disabled>{{ user_response }}</textarea>
-                        </div>
-                    </form>
+                <div class="col">
+                  <button type="submit" class="btn btn-primary w-100">
+                    Submit
+                  </button>
                 </div>
+              </div>
             </div>
+          </form>
         </div>
-    </div>
-    <div class="col-md-6 mt-md-2 pb-md-4 px-md-0 ms-md-0 h-100 contain">
-        <div class="mt-md-5 pt-md-4 text-center h-100">
-            <img class="landingimg" src="{{ url_for('static', filename='images/webdict.png') }}" alt="">
+        <div class="col-sm-6">
+          <form action="">
+            <div class="form-group">
+              <label for="word" class="form-label fs-5 fw-semibold"
+                >Meaning:</label
+              >
+              <textarea
+                type="text"
+                class="form-control"
+                name="word"
+                placeholder="Meaning of the word"
+                disabled
+              >
+{{ user_response }}</textarea
+              >
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+  <div
+    class="d-none d-md-block col-md-6 mt-md-2 pb-md-4 px-md-0 ms-md-0 contain"
+  >
+    <div class="mt-md-5 pt-md-4 text-center h-100">
+      <img
+        class="landing-img"
+        src="{{ url_for('static', filename='images/webdict.png') }}"
+        alt=""
+      />
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -1,8 +1,9 @@
-/* html {
-} */
+/* base */
 body {
     position: relative;
     min-height: 100vh;
+    height: auto;
+    margin: 0;
     padding-bottom: 55px;
     font-family: monospace;
     overflow: auto;
@@ -27,6 +28,19 @@ body {
 .flash-error {
     color: red;
 }
+.navbar-nav {
+    width: 90%;
+}
+.navbar-toggler {
+    border: none;
+}
+button:focus {
+    outline: none;
+}
+button:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
 .navbar-brand {
     font-weight: bold;
     letter-spacing: 2px;
@@ -37,14 +51,17 @@ body {
 .active {
     color: #34325E !important;
 }
+main {
+    margin-bottom: 100px;
+}
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 55px;
+    height: auto;
 }
 
-/* body */
+/* landing */
 .ms-ext {
     margin-left: 15%;
 }
@@ -58,11 +75,11 @@ h1, label {
     color: #34325e;
 }
 textarea.form-control {
-    height: 200px;
+    height: 120px;
     resize: none;
     background-color: #ffede5;
 }
-.landingimg {
+.landing-img {
     height: 85%;
     min-height: 400px;
     width: 90%;
@@ -70,7 +87,7 @@ textarea.form-control {
 }
 
 /* dashboard */
-.row > h2 {
+.row > h1 {
     color: #34325E;
 }
 .sidenav {
@@ -103,17 +120,28 @@ td textarea {
     resize: none;
 }
 
-
-@media screen and (min-width: 768px){
+@media screen and (min-width: 576px) {
     textarea.form-control {
         height: 200px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    main {
+        margin-bottom: 40px;
+    }
+    .contain {
+        max-width: 550px;
     }
     .ms-ext {
         margin-left: 20%;
         padding-left: 50px;
     }
-    .landingimg {
+    .landing-img {
         width: 100%;
+    }
+    textarea.form-control {
+        height: 200px;
     }
     .sidenav {
         border-right: 4px solid black;
@@ -123,7 +151,6 @@ td textarea {
         padding-bottom: 45px !important;
         display: block;
     }
-
     .sidenav a {
         display: block;
         width: 100% !important;
@@ -131,5 +158,10 @@ td textarea {
     }
     .sidenav button {
         width: 100% !important;
+    }
+}
+@media screen and (min-width: 768px){
+    main {
+        margin-bottom: 20px;
     }
 }
